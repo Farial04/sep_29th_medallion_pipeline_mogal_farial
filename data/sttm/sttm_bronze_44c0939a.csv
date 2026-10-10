@@ -1,0 +1,8 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+landing,products,product_id,bronze,products,product_id,direct_map,Pass-through source value as-is with no transformation
+landing,products,product_name,bronze,products,product_name,direct_map,Pass-through source value as-is with no transformation
+landing,products,category,bronze,products,category,direct_map,Pass-through source value as-is with no transformation
+landing,products,standard_price,bronze,products,standard_price,direct_map,"Pass-through source value as-is with no transformation, preserve float64 precision"
+landing,products,,bronze,products,_source_file_name,metadata,"Populate with the source file path/name from which the record was ingested, e.g. products.csv"
+landing,products,,bronze,products,_ingestion_timestamp,metadata,Populate with the system timestamp at the time of ingestion into the Bronze layer
+landing,products,,bronze,products,_row_number,metadata,Generate a sequential row number or surrogate identifier for each ingested record within the source file batch

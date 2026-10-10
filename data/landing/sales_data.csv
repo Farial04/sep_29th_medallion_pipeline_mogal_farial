@@ -1,0 +1,6 @@
+transaction_id,transaction_date,store_id,product_id,product_name,category,quantity,unit_price,total_amount,customer_segment,payment_method
+TXN10046,1/15/2024,S03,P001,iPhone 15,Electronics,7,1034.37,7240.59,Loyal,Apple Pay
+TXN10124,2/25/2024,S04,P002,Samsung Galaxy S24,Elec.,8,898.15,7185.2,Prem,Debit Card
+TXN10037,3/5/2024,S02,P010,KitchenAid Mixer,Home & Kitchen,3,343.43,1030.29,Budget,Debit Card
+RET10005,1/4/2024,S01,P007,Patagonia Fleece,Apparel,-2,157.93,-315.86,Premium,Debit Card
+TXN10023,2/22/2024,S02,P008,Champion Hoodie,Apparel,1,50.1,50.1,Standard,Debit Card

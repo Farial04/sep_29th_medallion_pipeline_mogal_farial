@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+.venv/
+.chroma/
+.pytest_cache/
+__pycache__/
+audit_logs/
+reports/
+data/traces/
+data/profiles/*.json
+data/bronze_layer/*.parquet
+data/silver_layer/*.parquet
+data/gold_layer/*.parquet

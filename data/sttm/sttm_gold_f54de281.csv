@@ -1,0 +1,21 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+silver,,,gold,products_sales_sttm,pk_gold_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+silver,products_silver,_load_timestamp,gold,products_sales_sttm,_load_timestamp,Direct,Passthrough from silver
+silver,products_silver,_source_file,gold,products_sales_sttm,_source_file,Direct,Passthrough from silver
+silver,sales_data_silver,_load_timestamp,gold,products_sales_sttm,_load_timestamp_sales,Indirect,Rename to distinguish from products load timestamp
+silver,sales_data_silver,_source_file,gold,products_sales_sttm,_source_file_sales,Indirect,Rename to distinguish from products source file
+silver,stores_silver,_load_timestamp,gold,products_sales_sttm,_load_timestamp_stores,Indirect,Rename to distinguish from other load timestamps
+silver,stores_silver,_source_file,gold,products_sales_sttm,_source_file_stores,Indirect,Rename to distinguish from other source files
+silver,products_silver,product_id,gold,products_sales_sttm,product_id,Direct,Passthrough from silver
+silver,products_silver,product_name,gold,products_sales_sttm,product_name,Direct,Passthrough from silver
+silver,products_silver,standard_price,gold,products_sales_sttm,standard_price,Direct,Passthrough from silver; needed for price analysis
+silver,sales_data_silver,sale_id,gold,products_sales_sttm,sale_id,Direct,Passthrough from silver
+silver,sales_data_silver,product_id,gold,products_sales_sttm,product_id_sales,Indirect,Rename to distinguish from products table product_id for join
+silver,sales_data_silver,store_id,gold,products_sales_sttm,store_id,Direct,Passthrough from silver
+silver,sales_data_silver,quantity,gold,products_sales_sttm,quantity,Direct,Passthrough from silver; needed for aggregation
+silver,sales_data_silver,total_price,gold,products_sales_sttm,total_price,Direct,Passthrough from silver; needed for aggregation
+silver,stores_silver,store_id,gold,products_sales_sttm,store_id_stores,Indirect,Rename to distinguish from sales store_id for join
+silver,stores_silver,store_name,gold,products_sales_sttm,store_name,Direct,Passthrough from silver
+silver,stores_silver,store_location,gold,products_sales_sttm,store_location,Direct,Passthrough from silver
+gold,products_sales_sttm,product_id,gold,products_sales_sttm,product_id_sales,Join,Join products_silver.product_id = sales_data_silver.product_id
+gold,products_sales_sttm,store_id_stores,gold,products_sales_sttm,store_id,Join,Join sales_data_silver.store_id = stores_silver.store_id

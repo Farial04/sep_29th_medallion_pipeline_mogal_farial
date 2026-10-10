@@ -1,0 +1,21 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+landing,products,product_id,bronze,products,product_id,none,Direct copy of product_id from source
+landing,products,product_name,bronze,products,product_name,none,Direct copy of product_name from source
+landing,products,category,bronze,products,category,none,Direct copy of category from source
+landing,products,standard_price,bronze,products,standard_price,none,Direct copy of standard_price from source
+landing,sales_data,transaction_id,bronze,sales_data,transaction_id,none,Direct copy of transaction_id from source
+landing,sales_data,transaction_date,bronze,sales_data,transaction_date,none,Direct copy of transaction_date from source
+landing,sales_data,store_id,bronze,sales_data,store_id,none,Direct copy of store_id from source
+landing,sales_data,product_id,bronze,sales_data,product_id,none,Direct copy of product_id from source
+landing,sales_data,product_name,bronze,sales_data,product_name,none,Direct copy of product_name from source
+landing,sales_data,category,bronze,sales_data,category,none,Direct copy of category from source
+landing,sales_data,quantity,bronze,sales_data,quantity,none,Direct copy of quantity from source
+landing,sales_data,unit_price,bronze,sales_data,unit_price,none,Direct copy of unit_price from source
+landing,sales_data,total_amount,bronze,sales_data,total_amount,none,Direct copy of total_amount from source
+landing,sales_data,customer_segment,bronze,sales_data,customer_segment,none,Direct copy of customer_segment from source
+landing,sales_data,payment_method,bronze,sales_data,payment_method,none,Direct copy of payment_method from source
+landing,stores,store_id,bronze,stores,store_id,none,Direct copy of store_id from source
+landing,stores,store_name,bronze,stores,store_name,none,Direct copy of store_name from source
+landing,stores,region,bronze,stores,region,none,Direct copy of region from source
+landing,stores,city,bronze,stores,city,none,Direct copy of city from source
+landing,stores,state,bronze,stores,state,none,Direct copy of state from source

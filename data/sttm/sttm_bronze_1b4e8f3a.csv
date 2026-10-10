@@ -1,0 +1,14 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+landing,sales_data,transaction_id,bronze,bronze_sales_data,transaction_id,DIRECT_COPY,"Cast source value to STRING; no business logic applied, load as-is."
+landing,sales_data,transaction_date,bronze,bronze_sales_data,transaction_date,DIRECT_COPY,"Cast source value to STRING; retain original date format (e.g., M/D/YYYY) as raw text, no parsing/formatting in Bronze."
+landing,sales_data,store_id,bronze,bronze_sales_data,store_id,DIRECT_COPY,"Cast source value to STRING; no business logic applied, load as-is."
+landing,sales_data,product_id,bronze,bronze_sales_data,product_id,DIRECT_COPY,"Cast source value to STRING; no business logic applied, load as-is."
+landing,sales_data,product_name,bronze,bronze_sales_data,product_name,DIRECT_COPY,"Cast source value to STRING; no business logic applied, load as-is."
+landing,sales_data,category,bronze,bronze_sales_data,category,DIRECT_COPY,"Cast source value to STRING; raw category values (including inconsistent labels like 'Elec.') loaded as-is, no standardization in Bronze."
+landing,sales_data,quantity,bronze,bronze_sales_data,quantity,DIRECT_COPY,"Cast source value to INTEGER (BIGINT/INT64); no business logic, filtering or sign correction applied, negative values retained as-is."
+landing,sales_data,unit_price,bronze,bronze_sales_data,unit_price,DIRECT_COPY,"Cast source value to FLOAT/DOUBLE; no rounding or business logic applied, load as-is."
+landing,sales_data,total_amount,bronze,bronze_sales_data,total_amount,DIRECT_COPY,"Cast source value to FLOAT/DOUBLE; no recalculation or validation against quantity*unit_price performed, negative values retained as-is."
+landing,sales_data,customer_segment,bronze,bronze_sales_data,customer_segment,DIRECT_COPY,"Cast source value to STRING; raw segment labels (including inconsistent variants like 'Prem') loaded as-is, no standardization in Bronze."
+landing,sales_data,payment_method,bronze,bronze_sales_data,payment_method,DIRECT_COPY,"Cast source value to STRING; no business logic applied, load as-is."
+landing,sales_data,,bronze,bronze_sales_data,_source_file_name,METADATA_ADD,"Populate with the full source file path/name (sales_data.csv) for lineage tracking; static/derived value, not present in source data."
+landing,sales_data,,bronze,bronze_sales_data,_ingestion_timestamp,METADATA_ADD,Populate with the current system timestamp at time of ingestion (CURRENT_TIMESTAMP()) for audit/lineage tracking; not present in source data.

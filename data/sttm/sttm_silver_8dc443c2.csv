@@ -1,0 +1,9 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+bronze,products_bronze,,silver,products_silver,pk_products_silver_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+bronze,products_bronze,product_id,silver,products_silver,product_id,Direct,Cast product_id to STRING type; no null handling or transformation applied as this is an identifier column
+bronze,products_bronze,product_name,silver,products_silver,product_name,Direct,"Trim leading/trailing whitespace, cast to STRING; replace NULL or empty string with 'UNKNOWN'"
+bronze,products_bronze,category,silver,products_silver,category,Direct,"Trim whitespace, standardize to upper case, cast to STRING; replace NULL or empty string with 'UNCATEGORIZED'"
+bronze,products_bronze,standard_price,silver,products_silver,standard_price,Direct,"Cast to DECIMAL(18,2); replace NULL or negative values with 0.00"
+bronze,products_bronze,_load_timestamp,silver,products_silver,load_timestamp,Direct,Cast to TIMESTAMP and standardize to 'YYYY-MM-DD HH:MM:SS' UTC format; replace NULL with current processing timestamp
+bronze,products_bronze,_source_file,silver,products_silver,source_file,Direct,Cast to STRING; trim whitespace; replace NULL or empty string with 'UNKNOWN_SOURCE'
+bronze,products_bronze,product_id,silver,products_silver,product_id,Indirect,"Deduplicate records by partitioning on product_id, ordering by _load_timestamp descending, and retaining only the latest record per product_id"

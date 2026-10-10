@@ -1,0 +1,21 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+landing,products,product_id,bronze,products,product_id,none,direct copy
+landing,products,product_name,bronze,products,product_name,none,direct copy
+landing,products,category,bronze,products,category,none,direct copy
+landing,products,standard_price,bronze,products,standard_price,none,direct copy
+landing,sales_data,transaction_id,bronze,sales_data,transaction_id,none,direct copy
+landing,sales_data,transaction_date,bronze,sales_data,transaction_date,none,direct copy
+landing,sales_data,store_id,bronze,sales_data,store_id,none,direct copy
+landing,sales_data,product_id,bronze,sales_data,product_id,none,direct copy
+landing,sales_data,product_name,bronze,sales_data,product_name,none,direct copy
+landing,sales_data,category,bronze,sales_data,category,none,direct copy
+landing,sales_data,quantity,bronze,sales_data,quantity,none,direct copy
+landing,sales_data,unit_price,bronze,sales_data,unit_price,none,direct copy
+landing,sales_data,total_amount,bronze,sales_data,total_amount,none,direct copy
+landing,sales_data,customer_segment,bronze,sales_data,customer_segment,none,direct copy
+landing,sales_data,payment_method,bronze,sales_data,payment_method,none,direct copy
+landing,stores,store_id,bronze,stores,store_id,none,direct copy
+landing,stores,store_name,bronze,stores,store_name,none,direct copy
+landing,stores,region,bronze,stores,region,none,direct copy
+landing,stores,city,bronze,stores,city,none,direct copy
+landing,stores,state,bronze,stores,state,none,direct copy

@@ -1,0 +1,8 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+landing,products,product_id,bronze,products,product_id,direct_mapping,Direct 1:1 copy of source value with no transformation; cast to STRING; preserve original 'P' + 3-digit code format as-is
+landing,products,product_name,bronze,products,product_name,direct_mapping,"Direct 1:1 copy of source value with no transformation; cast to STRING; no trimming, casing, or cleansing applied at Bronze"
+landing,products,category,bronze,products,category,direct_mapping,"Direct 1:1 copy of source value with no transformation; cast to STRING; raw category label retained as-is, no standardization or lookup applied"
+landing,products,standard_price,bronze,products,standard_price,direct_mapping,Direct 1:1 copy of source value with no transformation; cast to FLOAT/DOUBLE matching source dtype; no rounding or validation applied at Bronze
+landing,products,,bronze,products,_source_file_name,metadata_injection,"Populate with the fully qualified source file path/name (e.g., products.csv) from which the record was ingested, for lineage tracking"
+landing,products,,bronze,products,_ingestion_timestamp,metadata_injection,Populate with the system timestamp (UTC) at the time the record was loaded into the Bronze layer
+landing,products,,bronze,products,_row_number,metadata_injection,Sequential row number assigned during ingestion for traceability back to the original source file row order

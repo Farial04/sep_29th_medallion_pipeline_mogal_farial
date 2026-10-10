@@ -1,0 +1,15 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+,,,silver,sales_data_silver,pk_sales_data_silver_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+bronze,sales_data_bronze.parquet,transaction_id,silver,sales_data_silver,transaction_id,Direct,Cast to STRING; trim whitespace; deduplicate records based on transaction_id retaining the most recent _load_timestamp
+bronze,sales_data_bronze.parquet,transaction_date,silver,sales_data_silver,transaction_date,Derived,Cast to DATE type; standardize format to yyyy-MM-dd; replace null or invalid dates with NULL
+bronze,sales_data_bronze.parquet,store_id,silver,sales_data_silver,store_id,Direct,"Cast to STRING; type casting only, no null handling required"
+bronze,sales_data_bronze.parquet,product_id,silver,sales_data_silver,product_id,Direct,"Cast to STRING; type casting only, no null handling required"
+bronze,sales_data_bronze.parquet,product_name,silver,sales_data_silver,product_name,Direct,Cast to STRING; trim whitespace; replace null or empty values with 'Unknown Product'
+bronze,sales_data_bronze.parquet,category,silver,sales_data_silver,category,Direct,Cast to STRING; trim whitespace; standardize casing to Title Case; replace null with 'Uncategorized'
+bronze,sales_data_bronze.parquet,quantity,silver,sales_data_silver,quantity,Direct,Cast to INTEGER; replace null values with 0; reject negative values by setting to 0
+bronze,sales_data_bronze.parquet,unit_price,silver,sales_data_silver,unit_price,Direct,"Cast to DECIMAL(10,2); replace null values with 0.00; round to 2 decimal places"
+bronze,sales_data_bronze.parquet,total_amount,silver,sales_data_silver,total_amount,Derived,"Cast to DECIMAL(12,2); recalculate as quantity * unit_price when null or mismatched; round to 2 decimal places"
+bronze,sales_data_bronze.parquet,customer_segment,silver,sales_data_silver,customer_segment,Direct,Cast to STRING; trim whitespace; standardize casing to Title Case; replace null with 'Unknown'
+bronze,sales_data_bronze.parquet,payment_method,silver,sales_data_silver,payment_method,Direct,Cast to STRING; trim whitespace; standardize casing to Title Case; replace null with 'Unknown'
+bronze,sales_data_bronze.parquet,_load_timestamp,silver,sales_data_silver,load_timestamp,Direct,Cast to TIMESTAMP type; standardize to UTC; replace null with source system default load time
+bronze,sales_data_bronze.parquet,_source_file,silver,sales_data_silver,source_file,Direct,Cast to STRING; trim whitespace; retain original file name for lineage tracking

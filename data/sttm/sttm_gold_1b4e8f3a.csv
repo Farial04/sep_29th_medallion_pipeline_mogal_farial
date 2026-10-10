@@ -1,0 +1,16 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+silver,sales_data_silver,,gold,sales_data_gold,pk_gold_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+silver,sales_data_silver,transaction_id,gold,sales_data_gold,transaction_id,Direct,Passthrough from silver.transaction_id
+silver,sales_data_silver,transaction_date,gold,sales_data_gold,transaction_date,Direct,Passthrough from silver.transaction_date
+silver,sales_data_silver,store_id,gold,sales_data_gold,store_id,Direct,Passthrough from silver.store_id
+silver,sales_data_silver,product_id,gold,sales_data_gold,product_id,Direct,Passthrough from silver.product_id
+silver,sales_data_silver,product_name,gold,sales_data_gold,product_name,Direct,Passthrough from silver.product_name
+silver,sales_data_silver,category,gold,sales_data_gold,category,Indirect,"Standardize inconsistent category labels (e.g., 'Elec.' -> 'Electronics') via lookup/mapping table"
+silver,sales_data_silver,quantity,gold,sales_data_gold,quantity,Direct,"Passthrough from silver.quantity; retained for sales quantity aggregations (sum/avg), including negative values for returns"
+silver,sales_data_silver,unit_price,gold,sales_data_gold,unit_price,Direct,Passthrough from silver.unit_price; retained for price-based aggregations and calculations
+silver,sales_data_silver,total_amount,gold,sales_data_gold,total_amount,Direct,"Passthrough from silver.total_amount; core measure used for sum/avg sales aggregations, includes negative values for returns"
+silver,sales_data_silver,customer_segment,gold,sales_data_gold,customer_segment,Indirect,"Standardize inconsistent segment labels (e.g., 'Prem' -> 'Premium') via lookup/mapping table"
+silver,sales_data_silver,payment_method,gold,sales_data_gold,payment_method,Direct,Passthrough from silver.payment_method
+silver,sales_data_silver,transaction_id,gold,sales_data_gold,transaction_type,Indirect,Derive transaction_type ('Sale' or 'Return') based on transaction_id prefix (TXN vs RET) and/or negative quantity/total_amount to support explaining sales vs returns
+silver,sales_data_silver,load_timestamp,gold,sales_data_gold,load_timestamp,Direct,Passthrough from silver.load_timestamp for lineage tracking
+silver,sales_data_silver,source_file,gold,sales_data_gold,source_file,Direct,Passthrough from silver.source_file for lineage tracking

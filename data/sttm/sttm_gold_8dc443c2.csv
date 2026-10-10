@@ -1,0 +1,8 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+silver,products_silver,,gold,products_gold,pk_gold_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+silver,products_silver,product_id,gold,products_gold,product_id,Direct,Passthrough
+silver,products_silver,product_name,gold,products_gold,product_name,Direct,Passthrough
+silver,products_silver,category,gold,products_gold,category,Direct,Passthrough
+silver,products_silver,standard_price,gold,products_gold,standard_price,Direct,Passthrough - retained for price-based explanations and aggregations
+silver,products_silver,load_timestamp,gold,products_gold,load_timestamp,Direct,Passthrough
+silver,products_silver,source_file,gold,products_gold,source_file,Direct,Passthrough - retained for lineage and traceability explanations
